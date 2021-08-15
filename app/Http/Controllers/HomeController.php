@@ -41,9 +41,29 @@ class HomeController extends Controller
             $img_path = url('/')."/storage/".$model_id."/".$file_name;
             array_push($carousels,$img_path);
         }
+
+
+        $project_images = [];
+        $projects = ProjectDetail::with('media')
+                   //  ->where('type','=','ONGOING')
+                     ->whereNull('deleted_at')->latest()->limit(4)
+                     ->get();        
+        foreach ($projects as $ong){ 
+            foreach ($ong->media as $ong1) {      
+                $model_id = $ong1->id;
+                $file_name = $ong1->file_name;
+                $media_url = Storage::url($model_id."/".$file_name);
+                $img_path = url('/')."/storage/".$model_id."/".$file_name;
+                $ong1->name = $img_path;
+                $project_images[] = $img_path;
+            }
+           
+        }
+
+         
          
 
-        return view('index', compact('carousels'));
+        return view('home.index', compact('carousels','project_images'));
         
     }
 
