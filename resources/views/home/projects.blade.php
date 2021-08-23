@@ -18,7 +18,7 @@
 				</div>
 			</div>
 			<div class="commercial">
-			<img src="{{isset($project_images_commercial[1])? $project_images_commercial[1] : $project_images_residential[4]}}" alt="" class="img-fluid">
+			<img src="{{isset($project_images_commercial[0])? $project_images_commercial[0] : $project_images_residential[4]}}" alt="" class="img-fluid">
 			<div class="proj-det">
 				<div class="det-l">
 				<h4></h4>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			<div class="ongoing">
-			<img src="{{isset($project_images_commercial[3])?$project_images_commercial[3] :$project_images_residential[3]  }}" alt="" class="img-fluid">
+			<img src="{{isset($project_images_commercial[1])?$project_images_commercial[1] :$project_images_residential[3]  }}" alt="" class="img-fluid">
 			<div class="proj-det">
 				<div class="det-l">
 				<h4></h4>
