@@ -53,8 +53,8 @@
                         </th>
                         <td>
                             @foreach($projectDetail->photos as $key => $media)
-                                <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
-                                    <img src="{{ $media->getUrl('thumb') }}">
+                                <a href="{{ asset($media->getUrl()) }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ asset($media->getUrl('thumb')) }}">
                                 </a>
                             @endforeach
                         </td>
@@ -65,6 +65,15 @@
                         </th>
                         <td>
                             {{ App\Models\ProjectDetail::TYPE_SELECT[$projectDetail->type] ?? '' }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>
+                            {{ trans('cruds.projectDetail.fields.project_type') }}
+                        </th>
+                        <td>
+                            {{ App\Models\ProjectDetail::PROJECT_TYPE_SELECT[$projectDetail->project_type] ?? '' }}
                         </td>
                     </tr>
                 </tbody>

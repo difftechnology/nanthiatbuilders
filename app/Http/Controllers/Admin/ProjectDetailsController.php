@@ -65,13 +65,17 @@ class ProjectDetailsController extends Controller
                 $links = [];
 
                 foreach ($row->photos as $media) {
-                    $links[] = '<a href="' . $media->getUrl() . '" target="_blank"><img src="' . $media->getUrl('thumb') . '" width="50px" height="50px"></a>';
+                    $links[] = '<a href="' . asset($media->getUrl()) . '" target="_blank"><img src="' . asset($media->getUrl('thumb')) . '" width="50px" height="50px"></a>';
                 }
 
                 return implode(' ', $links);
             });
             $table->editColumn('type', function ($row) {
                 return $row->type ? ProjectDetail::TYPE_SELECT[$row->type] : '';
+            });
+
+            $table->editColumn('project_type', function ($row) {
+                return $row->type ? ProjectDetail::PROJECT_TYPE_SELECT[$row->project_type] : '';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'photos']);

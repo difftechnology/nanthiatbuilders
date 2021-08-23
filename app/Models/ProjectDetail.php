@@ -31,11 +31,17 @@ class ProjectDetail extends Model implements HasMedia
         'UP COMING' => 'UP COMING',
     ];
 
+    const PROJECT_TYPE_SELECT = [
+        '1'   => 'Commercial',
+        '2' => 'Residential'
+    ];
+
     protected $fillable = [
         'client_name',
         'location',
         'year',
         'type',
+        'project_type',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -66,6 +66,24 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.projectDetail.fields.type_helper') }}</span>
             </div>
+
+            <div class="form-group">
+                <label>{{ trans('cruds.projectDetail.fields.project_type') }}</label>
+                <select class="form-control {{ $errors->has('project_type') ? 'is-invalid' : '' }}" name="project_type" id="project_type">
+                    <option value disabled {{ old('project_type', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\ProjectDetail::PROJECT_TYPE_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('project_type', $projectDetail->project_type) === $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('project_type'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('project_type') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.projectDetail.fields.project_type_helper') }}</span>
+            </div>
+
+            
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

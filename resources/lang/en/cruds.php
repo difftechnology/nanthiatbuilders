@@ -114,6 +114,8 @@ return [
             'deleted_at'         => 'Deleted at',
             'deleted_at_helper'  => ' ',
             'type'               => 'Type',
+            'project_type'       => 'Project Type',
+            'project_type_helper'=> ' ',
             'type_helper'        => ' ',
         ],
     ],

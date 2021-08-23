@@ -43,27 +43,45 @@ class HomeController extends Controller
         }
 
 
-        $project_images = [];
-        $projects = ProjectDetail::with('media')
-                   //  ->where('type','=','ONGOING')
+        $project_images_commercial = [];
+        $project_images_residential = [];
+        $project_commercial  = ProjectDetail::with('media')
+                     ->where('project_type','=',1)
                      ->whereNull('deleted_at')->latest()->limit(4)
                      ->get();        
-        foreach ($projects as $ong){ 
+
+        $project_residential  = ProjectDetail::with('media')
+                       ->where('project_type','=',2)
+                       ->whereNull('deleted_at')->latest()->limit(4)
+                       ->get();                     
+        foreach ($project_commercial as $ong){ 
             foreach ($ong->media as $ong1) {      
                 $model_id = $ong1->id;
                 $file_name = $ong1->file_name;
                 $media_url = Storage::url($model_id."/".$file_name);
                 $img_path = url('/')."/storage/".$model_id."/".$file_name;
                 $ong1->name = $img_path;
-                $project_images[] = $img_path;
+                $project_images_commercial[] = $img_path;
             }
            
         }
 
+
+        foreach ($project_residential as $ong){ 
+            foreach ($ong->media as $ong1) {      
+                $model_id = $ong1->id;
+                $file_name = $ong1->file_name;
+                $media_url = Storage::url($model_id."/".$file_name);
+                $img_path = url('/')."/storage/".$model_id."/".$file_name;
+                $ong1->name = $img_path;
+                $project_images_residential[] = $img_path;
+            }
+           
+        }
          
          
 
-        return view('home.index', compact('carousels','project_images'));
+        return view('home.index', compact('carousels','project_images_commercial','project_images_residential'));
         
     }
 
