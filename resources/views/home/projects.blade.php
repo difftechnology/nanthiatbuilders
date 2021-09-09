@@ -24,7 +24,9 @@
 				<h4></h4>
 					<p></p>
 				</div>
+				@if(isset($project_images_commercial[0]))
 				<div class="det-r"><a href="{{ url('projects') }}">Commercial</a></div>
+				@endif
 				</div>
 			</div>
 			
