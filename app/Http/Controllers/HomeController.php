@@ -47,11 +47,12 @@ class HomeController extends Controller
         $project_images_residential = [];
         $project_commercial  = ProjectDetail::with('media')
                      ->where('project_type','=',1)
-                     ->whereNull('deleted_at')->latest()->limit(4)
+                     ->whereNull('deleted_at')
+                     ->where('type','=','COMPLETED')->latest()->limit(4)
                      ->get();        
 
         $project_residential  = ProjectDetail::with('media')
-                       ->where('project_type','=',2)
+                       ->where('project_type','=',2)->where('type','=','COMPLETED')
                        ->whereNull('deleted_at')->latest()->limit(4)
                        ->get();                     
         foreach ($project_commercial as $ong){ 
